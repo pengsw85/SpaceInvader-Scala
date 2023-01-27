@@ -1,0 +1,30 @@
+package spaceInvaders.model
+
+import scalafx.scene.shape.Rectangle;
+import scalafx.scene.paint.Color;
+
+class Bullet(xval: Int, yval: Int, _color: Color) extends Rectangle(2, 4, _color) {
+    val stepVal: Int = 18 // set step value for movement
+    height = 2.0d
+    width = 4.0d
+    fill = _color
+    // set inital location of bullet on game layout
+    translateX = xval
+    translateY= yval
+
+    def moveUp(): Unit = {
+        // move bullet up
+        translateY = translateY() - stepVal
+    }
+
+    def moveDown(): Unit = {
+        // move bullet down
+        translateY = translateY() + stepVal
+    }
+
+    def hitSprite(sprite: Sprite): Boolean = {
+        // return true, if this bullet intersected with sprite argument
+        return this.getBoundsInParent().intersects(sprite.getBounds()) 
+    }
+
+}
